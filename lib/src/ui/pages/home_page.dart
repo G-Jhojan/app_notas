@@ -1,4 +1,4 @@
-import 'package:app_notas/src/ui/configure.dart';
+import 'package:app_notas/src/core/controllers/theme_controller.dart';
 import 'package:flutter/material.dart';
 
 GlobalKey<ScaffoldState> homePageKey = GlobalKey<ScaffoldState>();
@@ -9,15 +9,27 @@ class HomePage extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return Scaffold(
-      backgroundColor: Configure.PRIMARY_DARK,
-      appBar: AppBar(),
-      key: homePageKey,
-      body: Container(
-        child: const Center(
-          child: Text('PRIMER TEXTO', style: TextStyle(fontSize: 30, color:Configure.PRIMARY_DARK ), ),
-        ),
-      ),
+    return ValueListenableBuilder(
+      valueListenable:  ThemeController.instance.brightness,
+      builder: (BuildContext context, dynamic value, Widget? child) {
+
+        final theme = ThemeController.instance;
+
+        return  Scaffold(
+          backgroundColor: theme.background(),
+          key: homePageKey,
+          body: Column(
+            mainAxisAlignment: MainAxisAlignment.center,
+            children: [
+              Container(
+              child: Center(
+                child: Text('Hola Mundo', style: TextStyle(fontSize: 20, color: theme.primary()),)),
+              ),
+              ElevatedButton(onPressed: ()=> theme.changetheme(), child:  const  Text('Accionar botón'))
+            ],
+          )
+        );
+      },
     );
   }
 }
