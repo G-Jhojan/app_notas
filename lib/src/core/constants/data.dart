@@ -28,6 +28,7 @@ class Constants {
     "content-type": "application-json",
 
   };
+  /// Urls Estáticas
     static const String MAIN_SERVICE = "https://notas-war-corp.herokuapp.com/api/v1/notes";
 
      static const String MAIN_TITLE = "Notas WAR CORP.";
