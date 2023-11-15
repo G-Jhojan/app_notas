@@ -16,6 +16,7 @@ class ThemeController{
   Color primaryButton   ()=> brightnessValue
     ? Configure.PRIMARY_BUTTON_LIGHT
     :Configure.PRIMARY_BUTTON_DARK;
+
   Color secondaryButton ()=> Configure.SECONDARY_BUTTON_LIGHT;
 
   Color background      ()=> brightnessValue
