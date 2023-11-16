@@ -16,7 +16,6 @@ class PreferencesService{
   }
 
   //para los booleanos
-
   Future<bool> getBool(String key) async{
     SharedPreferences instance = await SharedPreferences.getInstance();
     return  instance.getBool(key) ?? false;

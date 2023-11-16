@@ -1,3 +1,4 @@
+import 'package:app_notas/src/core/services/preferences_services.dart';
 import 'package:app_notas/src/ui/configure.dart';
 import 'package:flutter/material.dart';
 
@@ -23,7 +24,12 @@ class ThemeController{
     ? Configure.BACKGROUND_LIGHT
     :Configure.BACKGROUND_DARK;
 
-    void changetheme(){
+    void changetheme() async {
       brightness.value = !brightness.value;
+      await PreferencesService.instance.setBool('tema', brightness.value);
     }
+
+  Future<void> initTheme() async{
+    brightness.value = await PreferencesService.instance.getBool('tema');
+  }
 }

@@ -1,4 +1,5 @@
 import 'package:app_notas/src/core/constants/data.dart';
+import 'package:app_notas/src/core/controllers/theme_controller.dart';
 import 'package:app_notas/src/ui/pages/home_page.dart';
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
@@ -10,19 +11,22 @@ class MyApp extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return MaterialApp(
-      debugShowCheckedModeBanner: false,
-      routes: {
-        HomePage.HOME_PAGE_ROUTE: (BuildContext context) =>  HomePage(),
-      },
-      title: Constants.MAIN_TITLE,
-      initialRoute: HomePage.HOME_PAGE_ROUTE,
-      home: Container(),
-      theme: ThemeData(
-        primarySwatch: Colors.blue,
-        fontFamily: GoogleFonts.poppins().fontFamily,
-      ),
-
-    );
+    return FutureBuilder(
+      future: ThemeController.instance.initTheme(),
+      builder: (snapshot, context){
+       return MaterialApp(
+          debugShowCheckedModeBanner: false,
+          routes: {
+            HomePage.HOME_PAGE_ROUTE: (BuildContext context) =>  HomePage(),
+        },
+          title: Constants.MAIN_TITLE,
+          initialRoute: HomePage.HOME_PAGE_ROUTE,
+          home: Container(),
+          theme: ThemeData(
+            primarySwatch: Colors.blue,
+            fontFamily: GoogleFonts.poppins().fontFamily,
+        ),
+      );
+    });
   }
 }
