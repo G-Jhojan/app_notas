@@ -1,5 +1,7 @@
 import 'package:app_notas/src/core/controllers/theme_controller.dart';
 import 'package:flutter/material.dart';
+import 'package:url_launcher/url_launcher.dart';
+import 'package:url_launcher/url_launcher_string.dart';
 
 GlobalKey<ScaffoldState> homePageKey = GlobalKey<ScaffoldState>();
 
@@ -39,6 +41,13 @@ class HomePage extends StatelessWidget {
 
               ElevatedButton(onPressed: ()=> theme.changetheme(),
                child:  const  Text('Accionar botón')
+              ),
+              ElevatedButton(onPressed: ()async{
+                if (await canLaunchUrlString('https://pub.dev/packages/url_launcher/example')){
+                  launchUrlString('https://pub.dev/packages/url_launcher/example');
+                }
+              },
+               child:  const  Text('URL')
               )
             ],
           )
