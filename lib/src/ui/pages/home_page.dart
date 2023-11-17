@@ -1,17 +1,31 @@
 import 'package:app_notas/src/core/controllers/theme_controller.dart';
 import 'package:app_notas/src/ui/widgets/buttons/card_button.dart';
 import 'package:app_notas/src/ui/widgets/buttons/simple_buttons.dart';
+import 'package:app_notas/src/ui/widgets/text_inputs/text_inputs.dart';
 import 'package:flutter/material.dart';
 import 'package:url_launcher/url_launcher_string.dart';
 
 GlobalKey<ScaffoldState> homePageKey = GlobalKey<ScaffoldState>();
 
-class HomePage extends StatelessWidget {
+class HomePage extends StatefulWidget {
    HomePage({super.key});
 
   static const HOME_PAGE_ROUTE = 'home_page';
 
+  @override
+  State<HomePage> createState() => _HomePageState();
+}
 
+class _HomePageState extends State<HomePage> {
+
+  late TextEditingController _controller1;
+  late TextEditingController _controller2;
+  @override
+  void initState() {
+    super.initState();
+    _controller1 = TextEditingController(text: '');
+    _controller2 = TextEditingController(text: '');
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -73,6 +87,16 @@ class HomePage extends StatelessWidget {
                 icon:  Icons.document_scanner_outlined,
                 onPressed: (){},
               ),
+
+              const SizedBox(height: 10),
+
+              TextInput(title: 'Entrada de texto', controller: _controller1,),
+
+              const SizedBox(height: 10),
+
+              LargeTextInput(title: 'Entrada de texto largo', controller: _controller2,),
+
+
             ],
           )
         );
