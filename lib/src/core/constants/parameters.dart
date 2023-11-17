@@ -19,3 +19,9 @@ enum StateTask{
   PastDate,
   Create
 }
+
+enum StatusNetwork{
+  Connected,
+  NoInternet,
+  Exception
+}
